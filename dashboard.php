@@ -23,7 +23,7 @@ if (!$user) {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
       padding: 20px;
-      background: #f5f5f5;
+      background-image: url("https://www.shutterstock.com/blog/wp-content/uploads/sites/5/2020/02/Usign-Gradients-Featured-Image.jpg");
       color: #333;
     }
 
@@ -159,7 +159,7 @@ if (!$user) {
 
 <body>
   <div class="header">
-    <h1>CentralAuth Dashboard</h1>
+    <h1>Dashboard</h1>
     <div class="nav-buttons">
       <a href="index.php">Home</a>
       <a href="logout.php" class="logout">Logout</a>
