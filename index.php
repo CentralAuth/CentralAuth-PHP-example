@@ -16,7 +16,7 @@ $user = get_user();
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
       padding: 0;
-      background-image: url("https://www.shutterstock.com/blog/wp-content/uploads/sites/5/2020/02/Usign-Gradients-Featured-Image.jpg");
+      background-image: url("https://gradients.mijo-design.com/public/uploads/files/db7.png");
       min-height: 100vh;
       display: flex;
       align-items: center;
