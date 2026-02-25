@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once 'lib.php';
+require_once 'router.php';
 $user = get_user();
 
 ?>
