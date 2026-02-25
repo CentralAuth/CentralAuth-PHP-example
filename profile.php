@@ -5,8 +5,8 @@ $user = get_user();
 
 // Check if user is logged in
 if (!$user) {
-  $_SESSION['error'] = 'Please log in to access the dashboard';
-  header('Location: index.php');
+  $_SESSION['error'] = 'Please log in to access the profile';
+  header('Location: /');
   exit;
 }
 
@@ -17,13 +17,15 @@ if (!$user) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard - OAuth Test Application</title>
+  <title>Profile - OAuth Test Application</title>
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
       padding: 20px;
-      background-image: url("https://gradients.mijo-design.com/public/uploads/files/db7.png");
+      background-image: url("https://wallpaperaccess.com/full/2746064.jpg");
+      background-size: cover;
+      background-position: center;
       color: #333;
     }
 
@@ -65,7 +67,7 @@ if (!$user) {
       background: #c82333;
     }
 
-    .dashboard-content {
+    .profile-content {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 20px;
@@ -141,7 +143,7 @@ if (!$user) {
     }
 
     @media (max-width: 768px) {
-      .dashboard-content {
+      .profile-content {
         grid-template-columns: 1fr;
       }
 
@@ -159,14 +161,14 @@ if (!$user) {
 
 <body>
   <div class="header">
-    <h1>Dashboard</h1>
+    <h1>Profile</h1>
     <div class="nav-buttons">
       <a href="index.php">Home</a>
-      <a href="logout.php" class="logout">Logout</a>
+      <a href="/api/auth/logout" class="logout">Logout</a>
     </div>
   </div>
 
-  <div class="dashboard-content">
+  <div class="profile-content">
     <div class="card user-profile">
       <h2>User Profile</h2>
 
@@ -202,7 +204,7 @@ if (!$user) {
 
       <div class="api-test">
         <h4>🔒 Protected Area</h4>
-        <p>This dashboard is only accessible to authenticated users. The CentralAuth OAuth flow has successfully:</p>
+        <p>This profile is only accessible to authenticated users. The CentralAuth OAuth flow has successfully:</p>
         <ul>
           <li>✅ Redirected to CentralAuth provider</li>
           <li>✅ Handled authorization callback</li>

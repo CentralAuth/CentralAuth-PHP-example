@@ -16,7 +16,9 @@ $user = get_user();
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
       padding: 0;
-      background-image: url("https://gradients.mijo-design.com/public/uploads/files/db7.png");
+      background-image: url("https://wallpaperaccess.com/full/2746064.jpg");
+      background-size: cover;
+      background-position: center;
       min-height: 100vh;
       display: flex;
       align-items: center;
@@ -133,12 +135,12 @@ $user = get_user();
         echo '<strong>Avatar:</strong><br><img src="' . htmlspecialchars($user['gravatar']) . '" alt="Avatar" style="width: 60px; height: 60px; border-radius: 50%; margin-top: 10px;"><br>';
       }
       echo '</div>';
-      echo '<a href="logout.php" class="logout-btn">Logout</a>';
+      echo '<a href="/api/auth/logout" class="logout-btn">Logout</a>';
       echo '<br><br>';
-      echo '<a href="dashboard.php" class="login-btn">Go to Dashboard</a>';
+      echo '<a href="/profile" class="login-btn">Go to Profile</a>';
     } else {
       // Show login options
-      echo '<a href="login.php" class="login-btn">Login with CentralAuth</a>';
+      echo '<a href="/api/auth/login" class="login-btn">Login with CentralAuth</a>';
 
       // Show any error messages
       if (isset($_SESSION['error'])) {
@@ -159,7 +161,7 @@ $user = get_user();
       <ol style="text-align: left; font-size: 12px;">
         <li>Clone this repository: <code>git clone https://github.com/CentralAuth/CentralAuth-PHP-example.git</code></li>
         <li>Update <code>.env</code> with your CentralAuth endpoints and credentials</li>
-        <li>Configure your app's redirect URI to: <code>http://localhost/callback.php</code></li>
+        <li>Configure your app's redirect URI to: <code>http://localhost/api/auth/callback</code></li>
         <li>Make sure your web server is running on localhost</li>
       </ol>
     </div>

@@ -54,6 +54,6 @@ try {
   exit;
 } catch (Exception $e) {
   $_SESSION['error'] = 'OAuth initialization failed: ' . $e->getMessage();
-  header('Location: index.php');
+  header('Location: /');
   exit;
 }

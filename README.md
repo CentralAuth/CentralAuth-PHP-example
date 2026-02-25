@@ -9,7 +9,7 @@ For complete CentralAuth configuration and API documentation, visit: **[https://
 ## Features
 - Authorization Code + PKCE
 - Custom CentralAuth provider with POST userinfo retrieval
-- Session-based login + dashboard
+- Session-based login + profile
 
 ## Setup
 1. Install dependencies:
@@ -26,15 +26,18 @@ copy .env.example .env   # Windows
 cp .env.example .env      # macOS/Linux
 ```
 4. Edit `.env` with your real credentials and endpoints.
-5. Place this folder under your web root (e.g. XAMPP `htdocs`).
-6. Visit: `http://localhost/index.php`
+5. Set your redirect URI to `http://localhost/api/auth/callback`.
+6. Place this folder under your web root (e.g. XAMPP `htdocs`).
+7. Visit: `http://localhost/index.php`
+
+Note: The clean auth endpoints are provided via `.htaccess` rewrite rules. Ensure Apache `mod_rewrite` is enabled and `AllowOverride All` is set for this directory.
 
 ## Environment Variables (.env)
 | Variable                         | Description                                                                |
 | -------------------------------- | -------------------------------------------------------------------------- |
 | OAUTH_CLIENT_ID                  | CentralAuth client ID                                                      |
 | OAUTH_CLIENT_SECRET              | CentralAuth client secret                                                  |
-| OAUTH_REDIRECT_URI               | Redirect URI of your application                                           |
+| OAUTH_REDIRECT_URI               | Redirect URI of your application (e.g. http://localhost/api/auth/callback) |
 | OAUTH_AUTHORIZATION_URL          | Authorization/ Login endpoint (e.g. https://centralauth.com/login)         |
 | OAUTH_TOKEN_URL                  | Token / verification endpoint (e.g. https://centralauth.com/api/v1/verify) |
 | OAUTH_RESOURCE_OWNER_DETAILS_URL | User info endpoint (e.g. https://centralauth.com/api/v1/userinfo)          |

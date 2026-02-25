@@ -28,7 +28,7 @@ function get_config()
   return [
     'client_id' => env_or('OAUTH_CLIENT_ID', ''),
     'client_secret' => env_or('OAUTH_CLIENT_SECRET', ''),
-    'redirect_uri' => env_or('OAUTH_REDIRECT_URI', 'http://localhost/callback.php'),
+    'redirect_uri' => env_or('OAUTH_REDIRECT_URI', 'http://localhost/api/auth/callback'),
     'authorization_url' => env_or('OAUTH_AUTHORIZATION_URL', ''),
     'token_url' => env_or('OAUTH_TOKEN_URL', ''),
     'resource_owner_details_url' => env_or('OAUTH_RESOURCE_OWNER_DETAILS_URL', ''),

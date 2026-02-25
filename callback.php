@@ -6,14 +6,14 @@ $provider = get_provider();
 // Check if we have the required parameters
 if (!isset($_GET['code']) || !isset($_GET['state'])) {
   $_SESSION['error'] = 'OAuth callback missing required parameters';
-  header('Location: index.php');
+  header('Location: /');
   exit;
 }
 
 // Verify the state parameter to prevent CSRF attacks
 if (!isset($_SESSION['oauth_state']) || $_GET['state'] !== $_SESSION['oauth_state']) {
   $_SESSION['error'] = 'Invalid OAuth state parameter';
-  header('Location: index.php');
+  header('Location: /');
   exit;
 }
 
@@ -51,13 +51,13 @@ try {
   $_SESSION['success'] = 'Successfully logged in with CentralAuth!';
 
   // Get post-login return URL
-  $returnUrl = $_GET['return_to'] ?? 'index.php';
+  $returnUrl = $_GET['return_to'] ?? '/';
 
   header('Location: ' . $returnUrl);
   exit;
 } catch (Exception $e) {
   die("<pre>" . htmlspecialchars($e->getMessage()) . "</pre>");
   $_SESSION['error'] = 'OAuth callback failed: ' . $e->getMessage();
-  header('Location: index.php');
+  header('Location: /');
   exit;
 }
