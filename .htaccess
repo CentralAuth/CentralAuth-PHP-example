@@ -1,7 +1,0 @@
-RewriteEngine On
-
-# Map clean auth endpoints to existing PHP handlers.
-RewriteRule ^api/auth/login/?$ login.php [L,QSA]
-RewriteRule ^api/auth/logout/?$ logout.php [L,QSA]
-RewriteRule ^api/auth/callback/?$ callback.php [L,QSA]
-RewriteRule ^profile/?$ profile.php [L,QSA]
