@@ -48,8 +48,6 @@ try {
   unset($_SESSION['oauth_provider']);
   unset($_SESSION['pkce_code_verifier']);
 
-  $_SESSION['success'] = 'Successfully logged in with CentralAuth!';
-
   // Get post-login return URL
   $returnUrl = $_GET['return_to'] ?? '/';
 
