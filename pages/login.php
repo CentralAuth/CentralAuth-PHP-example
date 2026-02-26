@@ -1,20 +1,11 @@
 <?php
 session_start();
-require_once 'config.php';
-require_once 'lib.php';
+require_once __DIR__ . '/../config.php';
+require_once __DIR__ . '/../lib.php';
 $provider = get_provider();
 $config = get_config();
 
 try {
-  $returnUrl = $_SERVER['HTTP_REFERER'] ?? null;
-  // Build redirect URI, appending return_to if present
-  $baseRedirect = $config['redirect_uri'];
-  $redirectUri = $baseRedirect;
-  if ($returnUrl) {
-    $delimiter = (strpos($baseRedirect, '?') === false) ? '?' : '&';
-    $redirectUri .= $delimiter . 'return_to=' . rawurlencode($returnUrl);
-  }
-
   // Generate a random state parameter for CSRF protection.
   // Embed an HMAC of return_to (optional) to prevent tampering if passed back; for simplicity we store in session.
   $state = bin2hex(random_bytes(16));
@@ -39,6 +30,17 @@ try {
   $codeChallenge = rtrim(strtr(base64_encode(hash('sha256', $codeVerifier, true)), '+/', '-_'), '=');
   $authParams['code_challenge_method'] = 'S256';
   $authParams['code_challenge'] = $codeChallenge;
+
+  // Construct absolute return_to URL
+  $scheme = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' ? 'https' : 'http';
+  $host = $_SERVER['HTTP_HOST'];
+  $baseUrl = $scheme . '://' . $host;
+  $returnTo = $_GET['return_to'] ?? '/profile';
+  if (!filter_var($returnTo, FILTER_VALIDATE_URL)) {
+    // If it's not already a full URL, prepend the base URL
+    $returnTo = $baseUrl . (strpos($returnTo, '/') === 0 ? $returnTo : '/' . $returnTo);
+  }
+  $authParams['redirect_uri'] = $config['redirect_uri'] . '?return_to=' . urlencode($returnTo);
 
   // Optional: Add custom translations (example)
   // $translations = [

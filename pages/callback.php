@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'lib.php';
+require_once __DIR__ . '/../lib.php';
 $provider = get_provider();
 
 // Check if we have the required parameters
@@ -56,7 +56,6 @@ try {
   header('Location: ' . $returnUrl);
   exit;
 } catch (Exception $e) {
-  die("<pre>" . htmlspecialchars($e->getMessage()) . "</pre>");
   $_SESSION['error'] = 'OAuth callback failed: ' . $e->getMessage();
   header('Location: /');
   exit;

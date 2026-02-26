@@ -24,11 +24,31 @@ function get_provider()
 // Function to get the authenticated user's data from CentralAuth
 function get_user()
 {
-  if (!empty($_SESSION['access_token'])) {
-    $provider = get_provider();
-    $accessToken = new AccessToken(['access_token' => $_SESSION['access_token']]);
-    //Get the user info if we have an access token
-    $resourceOwner = $provider->getResourceOwner($accessToken);
-    return $resourceOwner->toArray();
+  try {
+    if (!empty($_SESSION['access_token'])) {
+      $provider = get_provider();
+      $accessToken = new AccessToken(['access_token' => $_SESSION['access_token']]);
+      //Get the user info if we have an access token
+      $resourceOwner = $provider->getResourceOwner($accessToken);
+      return $resourceOwner->toArray();
+    }
+  } catch (Exception $e) {
+    // Clear the invalid/expired token and return null
+    unset($_SESSION['access_token']);
+    return null;
   }
+  return null;
+}
+
+// Function to get error message by error code
+function get_error_message($error_code)
+{
+  $errors = [
+    'not_logged_in' => 'You need to be logged in to view the profile.',
+    'logout_failed' => 'Logout failed. Please try again.',
+    'callback_failed' => 'Authentication callback failed. Please try logging in again.',
+    'login_failed' => 'Login failed. Please try again.',
+    'user_info_failed' => 'Failed to get user information. Please try again.'
+  ];
+  return $errors[$error_code] ?? 'An error occurred.';
 }
