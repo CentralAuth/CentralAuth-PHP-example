@@ -7,11 +7,8 @@ $config = get_config();
 
 try {
   // Generate a random state parameter for CSRF protection.
-  // Embed an HMAC of return_to (optional) to prevent tampering if passed back; for simplicity we store in session.
   $state = bin2hex(random_bytes(16));
-  $_SESSION['oauth_state'] = $state;
 
-  // Get additional authorization parameters if needed
   $authParams = [
     'state' => $state
   ];
