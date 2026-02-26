@@ -52,12 +52,6 @@ try {
 
   // Get post-login return URL
   $returnUrl = $_GET['return_to'] ?? '/';
-  error_log('CentralAuth callback GET=' . json_encode($_GET));
-  error_log('CentralAuth callback return_to=' . $returnUrl);
-  error_log('CentralAuth callback host=' . ($_SERVER['HTTP_HOST'] ?? ''));
-  error_log('CentralAuth callback https=' . ($_SERVER['HTTPS'] ?? '')
-    . ' forwarded_proto=' . ($_SERVER['HTTP_X_FORWARDED_PROTO'] ?? '')
-    . ' forwarded_ssl=' . ($_SERVER['HTTP_X_FORWARDED_SSL'] ?? ''));
 
   header('Location: ' . $returnUrl);
   exit;
