@@ -4,6 +4,8 @@ A minimal OAuth 2.0 Authorization Code flow test using the custom `CentralAuth` 
 
 This example uses the [CentralAuth provider](https://github.com/CentralAuth/CentralAuth-PHP-library) for the [PHP OAuth client library](https://github.com/thephpleague/oauth2-client).
 
+**Live Demo**: [https://php-example.centralauth.com](https://php-example.centralauth.com)
+
 For complete CentralAuth configuration and API documentation, visit: **[https://docs.centralauth.com](https://docs.centralauth.com)**
 
 ## Features
