@@ -32,7 +32,12 @@ try {
   $authParams['code_challenge'] = $codeChallenge;
 
   // Construct absolute return_to URL
-  $scheme = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' ? 'https' : 'http';
+  $forwardedProto = $_SERVER['HTTP_X_FORWARDED_PROTO'] ?? '';
+  $forwardedSsl = $_SERVER['HTTP_X_FORWARDED_SSL'] ?? '';
+  $isHttps = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
+    || strtolower($forwardedProto) === 'https'
+    || strtolower($forwardedSsl) === 'on';
+  $scheme = $isHttps ? 'https' : 'http';
   $host = $_SERVER['HTTP_HOST'];
   $baseUrl = $scheme . '://' . $host;
   $returnTo = $_GET['return_to'] ?? '/profile';
